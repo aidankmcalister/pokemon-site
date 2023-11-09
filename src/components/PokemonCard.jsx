@@ -1,61 +1,12 @@
 import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import TypeChips from "../../TypeChips";
+import TypeChips from "./TypeChips";
+import { getBackgroundColor } from "./types";
+import { Button } from "@material-tailwind/react";
+
+const divFlipClasses = "";
 
 function PokemonCard({ data }) {
-  const getBackgroundColor = (type) => {
-    let backgroundClass;
-    let textClass;
-    let borderClass;
-    let gradientClass;
-
-    switch (type) {
-      case "fire":
-        backgroundClass = "bg-red-300";
-        textClass = "text-red-700";
-        borderClass = "border-red-700";
-        gradientClass = "from-red-700 via-red-200 to-red-500";
-        break;
-      case "water":
-        backgroundClass = "bg-blue-300";
-        textClass = "text-blue-700";
-        borderClass = "border-blue-700";
-        gradientClass = "from-blue-700 via-blue-200 to-blue-500";
-        break;
-      case "grass":
-        backgroundClass = "bg-green-300";
-        textClass = "text-green-700";
-        borderClass = "border-green-700";
-        gradientClass = "from-green-700 via-green-200 to-green-500";
-        break;
-      case "bug":
-        backgroundClass = "bg-lime-500";
-        textClass = "text-lime-800";
-        borderClass = "border-lime-800";
-        gradientClass = "from-lime-800 via-lime-100 to-lime-700";
-        break;
-      case "electric":
-        backgroundClass = "bg-yellow-300";
-        textClass = "text-yellow-700";
-        borderClass = "border-yellow-700";
-        gradientClass = "from-yellow-700 via-yellow-200 to-yellow-500";
-        break;
-      case "normal":
-        backgroundClass = "bg-gray-400";
-        textClass = "text-gray-700";
-        borderClass = "border-gray-700";
-        gradientClass = "from-gray-700 via-gray-200 to-gray-500";
-        break;
-      default:
-        backgroundClass = "bg-gray-600";
-        textClass = "text-gray-800";
-        borderClass = "border-gray-800";
-        gradientClass = "from-gray-700 via-gray-200 to-gray-500";
-    }
-
-    return { backgroundClass, textClass, borderClass, gradientClass };
-  };
-
   const {
     backgroundClass,
     textClass,
@@ -97,6 +48,10 @@ function PokemonCard({ data }) {
     y.set(0);
   };
 
+  const capitalizeFristLetter = (str) => {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+  };
+
   return (
     <motion.div
       onMouseMove={handleMouseMove}
@@ -106,7 +61,7 @@ function PokemonCard({ data }) {
         rotateX,
         transformStyle: "preserve-3d",
       }}
-      className={`relative h-96 w-72 rounded-xl bg-gradient-to-br ${gradientClass}`}
+      className={`h-96 w-72 rounded-xl bg-gradient-to-br ${gradientClass}`}
     >
       <div
         style={{
@@ -127,11 +82,15 @@ function PokemonCard({ data }) {
               className="w-[10rem] h-[10rem] p-6"
             />
           </div>
-          <h3 className="text-xl">{data.name}</h3>
-          <p>ID: {data.id}</p>
+          <div className="flex items-center my-1">
+            <h3 className="text-xl">{capitalizeFristLetter(data.name)}</h3>
+            <p className="ml-1 p-1 bg-gray-900 rounded-lg bg-opacity-75">
+              #{data.id}
+            </p>
+          </div>{" "}
           <p>Weight: {data.weight} kg</p>
           <p>Height: {data.height} cm</p>
-          <div>
+          <div className="mt-4">
             <TypeChips type={data.primaryType} />
           </div>
         </div>
