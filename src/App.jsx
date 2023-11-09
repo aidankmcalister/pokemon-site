@@ -1,10 +1,10 @@
-import PokemonCard from "./components/PokemonCard";
+import PokemonCardList from "./components/PokemonCardList";
 import "./App.css";
 
 function App() {
   return (
     <div>
-      <PokemonCard />
+      <PokemonCardList />
     </div>
   );
 }

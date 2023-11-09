@@ -8,7 +8,7 @@ const fetchData = async (id) => {
 
     const pokemonData = {
       name: data.name,
-      imgFront: data.sprites.front_default,
+      img: data.sprites.other.dream_world.front_default,
       weight: data.weight,
       height: data.height,
       types: data.types.map((type) => type.type.name),
