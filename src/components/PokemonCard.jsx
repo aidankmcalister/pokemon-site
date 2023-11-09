@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { fetchData } from "../data/pokemonData";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+  Avatar,
+} from "@material-tailwind/react";
 
 function PokemonCard() {
   const [pokemonData, setPokemonData] = useState([]);
@@ -25,17 +32,31 @@ function PokemonCard() {
   }, []);
 
   return (
-    <div>
+    <div className="mx-5 grid gap-4 grid-cols-1">
       {pokemonData.map((data, index) => (
-        <div key={index}>
-          <h2>{data.name}</h2>
-          <p>{data.id}</p>
-          <img src={data.imgFront} alt={data.name} />
-          <p>Weight: {data.weight} kg</p>
-          <p>Height: {data.height} cm</p>
-          <p>Types: {data.types.join(", ")}</p>
-          <p>Primary Type: {data.primaryType}</p>
-        </div>
+        <Card key={index} className="p-2 bg-gray-800 rounded-2xl">
+          <CardBody className="border rounded-xl flex flex-col items-center">
+            <img
+              src={data.imgFront}
+              alt={data.name}
+              className="w-32 bg-green-200 rounded-full p-1"
+            />
+            <Typography variant="h3">{data.name}</Typography>
+            <Typography variant="paragraph">
+              Primary Type: {data.primaryType}
+            </Typography>
+            <Typography variant="paragraph">ID: {data.id}</Typography>
+            <Typography variant="paragraph">
+              Weight: {data.weight} kg
+            </Typography>
+            <Typography variant="paragraph">
+              Height: {data.height} cm
+            </Typography>
+            <Typography variant="paragraph">
+              Types: {data.types.join(", ")}
+            </Typography>
+          </CardBody>
+        </Card>
       ))}
     </div>
   );
