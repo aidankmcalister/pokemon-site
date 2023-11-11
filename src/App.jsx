@@ -11,7 +11,7 @@ function App() {
   };
 
   return (
-    <div className="font-poppins">
+    <div className="font-semibold font-poppins">
       <div className="flex justify-center">
         <div className="flex bg-gray-800 rounded-xl mt-3">
           <MagnifyingGlassIcon color="gray" width={"2.5rem"} className="p-1" />

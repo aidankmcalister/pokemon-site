@@ -83,7 +83,9 @@ function PokemonCard({ data }) {
             />
           </div>
           <div className="flex items-center my-1">
-            <h3 className="text-xl">{capitalizeFristLetter(data.name)}</h3>
+            <h3 className="text-xl font-poppins">
+              {capitalizeFristLetter(data.name)}
+            </h3>
             <p className="ml-1 p-1 bg-gray-900 rounded-lg bg-opacity-75">
               #{data.id}
             </p>

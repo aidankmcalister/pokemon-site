@@ -6,7 +6,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 function PokemonCardList({ searchTerm }) {
   const [allPokemonData, setAllPokemonData] = useState([]);
   const [filteredPokemon, setFilteredPokemon] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [displayedPokemon, setDisplayedPokemon] = useState([]);
   const batchSize = 18;
   const totalPokemon = 1000;
@@ -14,7 +13,6 @@ function PokemonCardList({ searchTerm }) {
   useEffect(() => {
     const fetchAllData = async () => {
       try {
-        setIsLoading(true);
         const allData = await Promise.all(
           Array.from({ length: totalPokemon }, (_, index) =>
             fetchData(index + 1)
@@ -23,8 +21,6 @@ function PokemonCardList({ searchTerm }) {
         setAllPokemonData(allData);
       } catch (error) {
         console.error("Error fetching all data:", error);
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -34,20 +30,19 @@ function PokemonCardList({ searchTerm }) {
   }, [allPokemonData, totalPokemon]);
 
   useEffect(() => {
-    // Filter the Pokemon based on the search term
-    const filtered = allPokemonData.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filtered = allPokemonData.filter(
+      (pokemon) =>
+        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()) |
+        String(pokemon.id).includes(searchTerm)
     );
     setFilteredPokemon(filtered);
   }, [searchTerm, allPokemonData]);
 
   useEffect(() => {
-    // Display the first batch of filtered Pokemon
     setDisplayedPokemon(filteredPokemon.slice(0, batchSize));
   }, [filteredPokemon]);
 
   const fetchMoreData = () => {
-    // Display the next batch of filtered Pokemon
     setDisplayedPokemon((prevDisplayed) => [
       ...prevDisplayed,
       ...filteredPokemon.slice(
