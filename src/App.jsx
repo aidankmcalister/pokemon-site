@@ -1,11 +1,9 @@
-import PokemonCardList from "./components/PokemonCardList";
 import "./App.css";
-import Navbar from "./components/Navbar";
+import PokemonCardList from "./components/PokemonCardList";
 
 function App() {
   return (
     <div className="font-poppins">
-      <Navbar />
       <PokemonCardList />
     </div>
   );

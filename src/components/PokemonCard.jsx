@@ -2,9 +2,6 @@ import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import TypeChips from "./TypeChips";
 import { getBackgroundColor } from "./types";
-import { Button } from "@material-tailwind/react";
-
-const divFlipClasses = "";
 
 function PokemonCard({ data }) {
   const {
@@ -61,7 +58,7 @@ function PokemonCard({ data }) {
         rotateX,
         transformStyle: "preserve-3d",
       }}
-      className={`h-96 w-72 rounded-xl bg-gradient-to-br ${gradientClass}`}
+      className={`h-96 w-72 rounded-xl bg-gradient-to-br shadow-lg shadow-black ${gradientClass}`}
     >
       <div
         style={{

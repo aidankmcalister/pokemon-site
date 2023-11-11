@@ -19,7 +19,7 @@ const fetchData = async (id) => {
     return pokemonData;
   } catch (error) {
     console.error("Fetch error:", error);
-    return null; // Return null in case of an error
+    throw error; // Return null in case of an error
   }
 };
 
