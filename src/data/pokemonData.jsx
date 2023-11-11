@@ -16,6 +16,7 @@ const fetchData = async (id) => {
       id: data.id,
     };
 
+    console.log("Fetched Pokemon Data:", pokemonData);
     return pokemonData;
   } catch (error) {
     console.error("Fetch error:", error);
