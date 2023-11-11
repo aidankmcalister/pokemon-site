@@ -74,9 +74,12 @@ function PokemonCard({ data }) {
             className={`${backgroundClass} ${borderClass} border-2 rounded-full`}
           >
             <img
-              src={data.img}
+              src={
+                data.img ||
+                `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.id}.png`
+              }
               alt={data.name}
-              className="w-[10rem] h-[10rem] p-6"
+              className="w-[10rem] h-[10rem] p-6 "
             />
           </div>
           <div className="flex items-center my-1">
