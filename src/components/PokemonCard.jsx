@@ -4,6 +4,9 @@ import TypeChips from "./TypeChips";
 import { getBackgroundColor } from "./types";
 
 function PokemonCard({ data }) {
+  const updatedWeight = (data.weight / 10).toFixed(1);
+  const updatedHeight = (data.height / 10).toFixed(1);
+
   const {
     backgroundClass,
     textClass,
@@ -90,8 +93,8 @@ function PokemonCard({ data }) {
               #{data.id}
             </p>
           </div>{" "}
-          <p>Weight: {data.weight} kg</p>
-          <p>Height: {data.height} cm</p>
+          <p>Weight: {updatedWeight} kg</p>
+          <p>Height: {updatedHeight} m</p>
           <div className="mt-4">
             <TypeChips type={data.primaryType} />
           </div>
